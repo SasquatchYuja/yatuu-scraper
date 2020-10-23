@@ -92,3 +92,24 @@ def parse(env, response):
                 env.logger.warning(f"Failed regex match : {env.S}{url}{env.R}")
 
     env.logger.warning(f"{localCptImgs} images downloaded on this page, {env.totalCptImgs} in total")
+
+
+def getNavLinks(env, response):
+    navigLink = model('//div[@class = "postpage--nav postpage--nav__$fill"]/a/@href')
+
+    prev = getNavLinksHelper(response, navigLink, "prev")
+    follow = getNavLinksHelper(response, navigLink, "next")
+
+    env.logger.warning(f"Previous URL is {prev}")
+    env.logger.warning(f"Next URL is {follow}")
+
+    return prev, follow
+
+
+def getNavLinksHelper(response, link, fill):
+    ret = response.xpath(link.substitute({'fill' : fill})).extract()
+
+    if len(ret) > 0:
+        return ret[0]
+    else:
+        return None
