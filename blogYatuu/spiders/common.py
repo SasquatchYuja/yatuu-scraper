@@ -119,3 +119,15 @@ def getNavLinksHelper(response, link, fill):
 def logScrappedURLs(url, file):
     with open(file, "a") as fi:
         fi.write(f"{url}\n")
+
+
+def downloadImage(env, url):
+    # Maybe I shoud do the downloading part with Scrapy too ?
+    r = requests.get(url, allow_redirects=True)
+
+    filename = f"{env.tDir}/{env.totalCptImgs}_{os.path.basename(url)}"
+    with open(filename, "wb") as img:
+        img.write(r.content)
+
+    env.logger.warning(f'Saved file : {os.path.basename(filename)}')
+    logScrappedURLs(url, f"{env.urlFile}_only-downloaded") # only those we eventually download
