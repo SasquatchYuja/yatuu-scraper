@@ -1,0 +1,1 @@
+- [ ] strip trailing '/'s before comparing URLs

@@ -71,7 +71,7 @@ def parse(env, response):
 
     prevPage, nextPage = getNavLinks(env, response)
     if nextPage is not None:
-        if currUrl == env.endURL:
+        if currUrl == env.endURL: # TODO : strip trailing '/' before comparision
             env.logger.warning("Reached last page to be downloaded")
         else:
             yield response.follow(nextPage, env.parse)
