@@ -1,0 +1,27 @@
+#!/bin/sh
+
+buildPdf()
+{
+    if [[ -d $1 ]]
+    then
+        echo "$1 already exists, Scrapy would happily create a new directory, but conversion to PDF would still use $1"
+    else
+        scrapy crawl $2
+        cd $1
+        convert $(ls -v) "../$3"
+        cd ../..
+    fi
+}
+
+buildPdf ./out/Erika-T1 erikaT1 t1.pdf
+buildPdf ./out/Erika-T2 erikaT2 t2.pdf
+
+cd ./out
+if [[ -f t1.pdf ]] && [[ -f t2.pdf ]] && [[ ! -f t1and2.pdf ]]
+then
+    echo "Merging pdf files"
+    pdftk t1.pdf t2.pdf cat output t1and2.pdf
+fi
+
+cd ..
+echo "Done."
