@@ -38,3 +38,27 @@ def bootstrap(env):
 
     env.tDir = createNumbered(env, env.tDir, False)
     env.urlFile = createNumbered(env, env.urlFile, True)
+
+
+def createNumbered(env, initialName, isFile = True):
+    testExistence = os.path.isfile if isFile else os.path.isdir
+
+    if testExistence(initialName):
+        cpt = 1
+        newInitialName = f"{initialName}_{cpt}"
+        env.logger.warning(f"{os.path.basename(initialName)} already exists, trying to create {os.path.basename(newInitialName)}")
+
+        while testExistence(newInitialName):
+            env.logger.warning(f"{os.path.basename(newInitialName)} already exists too")
+            cpt += 1
+            newInitialName = f"{initialName}_{cpt}"
+
+        initialName = newInitialName
+
+    if isFile:
+        env.logger.warning(f"File {os.path.basename(initialName)} does not exist yet")
+    else:
+        os.mkdir(initialName)
+        env.logger.warning(f"Created directory {os.path.basename(initialName)}")
+
+    return initialName
