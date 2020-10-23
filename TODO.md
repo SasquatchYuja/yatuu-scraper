@@ -1,1 +1,3 @@
 - [ ] strip trailing '/'s before comparing URLs
+- [ ] save logs into a file
+- [ ] get colored logs
