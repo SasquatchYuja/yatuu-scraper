@@ -113,3 +113,9 @@ def getNavLinksHelper(response, link, fill):
         return ret[0]
     else:
         return None
+
+
+# save url to file
+def logScrappedURLs(url, file):
+    with open(file, "a") as fi:
+        fi.write(f"{url}\n")
