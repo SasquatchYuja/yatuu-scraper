@@ -1,2 +1,3 @@
 - ImageMagick (convert)
 - pdftk
+- any pdf viewer
