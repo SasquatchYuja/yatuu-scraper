@@ -11,13 +11,11 @@ class Erikat1Spider(scrapy.Spider):
 
     begURL = "erika-et-les-princes-en-detresse-page-1-a-4/" # https://yatuu.fr/erika-et-les-princes-en-detresse-page-1-a-4/
     endURL = "erika-et-les-princes-en-detresse-82/" # https://yatuu.fr/erika-et-les-princes-en-detresse-82/
-    #begURL = "erika-princes-detresse-67/"
-    #endURL = "erika-princes-detresse-67/"
 
     tDir = "Erika-T1"
     urlFile = "URListT1.txt"
 
-    boolLogFailedRegexes = False
+    boolLogFailedRegexes = False # Log images' URLs that aren't downloaded because not matching the regex ?
 
 
     def __init__(self):

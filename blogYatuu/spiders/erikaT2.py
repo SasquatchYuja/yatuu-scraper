@@ -15,7 +15,7 @@ class Erikat2Spider(scrapy.Spider):
     tDir = "Erika-T2"
     urlFile = "URListT2.txt"
 
-    boolLogFailedRegexes = False
+    boolLogFailedRegexes = False # Log images' URLs that aren't downloaded because not matching the regex ?
 
 
     def __init__(self):
