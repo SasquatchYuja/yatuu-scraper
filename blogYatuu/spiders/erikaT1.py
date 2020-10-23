@@ -16,5 +16,7 @@ class Erikat1Spider(scrapy.Spider):
 
     tDir = "Erika-T1"
     urlFile = "URListT1.txt"
+
+    boolLogFailedRegexes = False
     def parse(self, response):
         pass
