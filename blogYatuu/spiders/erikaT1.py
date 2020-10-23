@@ -25,4 +25,4 @@ class Erikat1Spider(scrapy.Spider):
 
 
     def parse(self, response):
-        pass
+        return common.parse(self, response)
