@@ -62,3 +62,33 @@ def createNumbered(env, initialName, isFile = True):
         env.logger.warning(f"Created directory {os.path.basename(initialName)}")
 
     return initialName
+
+
+def parse(env, response):
+    currUrl = response.url
+    env.logger.warning(f"Crawling #{env.nbPages} : {currUrl}")
+    env.nbPages += 1
+
+    prevPage, nextPage = getNavLinks(env, response)
+    if nextPage is not None:
+        if currUrl == env.endURL:
+            env.logger.warning("Reached last page to be downloaded")
+        else:
+            yield response.follow(nextPage, env.parse)
+
+    filesURLs = response.css('img').xpath('@src').getall() # all images in the webpage
+    localCptImgs = 0
+    for url in filesURLs:
+        logScrappedURLs(url, env.urlFile) # all images found
+
+        if re.fullmatch(env.extendedPattern, url) is not None:
+            downloadImage(env, url)
+
+            localCptImgs += 1
+            env.totalCptImgs += 1
+        else:
+            logScrappedURLs(url, f"{env.urlFile}_only-failed")
+            if env.boolLogFailedRegexes:
+                env.logger.warning(f"Failed regex match : {env.S}{url}{env.R}")
+
+    env.logger.warning(f"{localCptImgs} images downloaded on this page, {env.totalCptImgs} in total")
