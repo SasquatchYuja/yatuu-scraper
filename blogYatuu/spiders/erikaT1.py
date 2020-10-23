@@ -18,5 +18,11 @@ class Erikat1Spider(scrapy.Spider):
     urlFile = "URListT1.txt"
 
     boolLogFailedRegexes = False
+
+
+    def __init__(self):
+        common.init(self)
+
+
     def parse(self, response):
         pass
