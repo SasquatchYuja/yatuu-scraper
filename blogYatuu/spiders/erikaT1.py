@@ -14,5 +14,7 @@ class Erikat1Spider(scrapy.Spider):
     #begURL = "erika-princes-detresse-67/"
     #endURL = "erika-princes-detresse-67/"
 
+    tDir = "Erika-T1"
+    urlFile = "URListT1.txt"
     def parse(self, response):
         pass
