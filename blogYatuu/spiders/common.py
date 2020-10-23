@@ -31,3 +31,10 @@ def setEnv(env):
 
     env.nbPages = 0
     env.totalCptImgs = 0 # total number of downloaded images
+
+
+def bootstrap(env):
+    pathlib.Path(env.outDir).mkdir(exist_ok=True)
+
+    env.tDir = createNumbered(env, env.tDir, False)
+    env.urlFile = createNumbered(env, env.urlFile, True)
