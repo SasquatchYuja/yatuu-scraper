@@ -16,6 +16,6 @@ evince ./out/*.pdf
 ```
 
 ## NB
-[1] This scraper has been done for offline reading only, please consider visiting https://yatuu.fr and [supporting](https://fr.tipeee.com/yatuu) the author if you like her work.
+[1] This scraper has been done for offline reading only, please consider visiting https://yatuu.fr and [supporting](https://fr.tipeee.com/yatuu) the author if you like her work, as well as buying the books !
 
 [2] Eventhough the regex is ugly it is still not perfect, some images are fetched but shouldn't. I don't think any is missing, but just in case ALL images' URLs that are found in crawled pages are saved into a file, so that you can download them later if needed.
